@@ -1,0 +1,39 @@
+5 P=0:L=3:T=9
+10 CLS:A=46:I=A:N=49:B=1200
+20 ?"***********"
+30 ?"*.........*"
+40 ?"*.***.***.*"
+50 ?"*...*.*...*"
+60 ?"*.*.....*.*"
+70 ?"*.***.***.*"
+80 ?"*.... ....*"
+90 ?"*.***.***.*"
+100 ?"*.........*"
+110 ?"***********"
+120 X=5:Y=6:W=0:Z=0
+121 E=1:F=1:G=1:H=0
+130 LCX,Y:?" "
+140 IF BTN(28) W=-1:Z=0
+150 IF BTN(29) W=1:Z=0
+160 IF BTN(30) W=0:Z=-1
+170 IF BTN(31) W=0:Z=1
+180 X=X+W:Y=Y+Z:R=SCR(X,Y)
+185 IF R=42 X=X+W*-1:Y=Y+Z*-1
+186 IF R=46 P=P+10:N=N-1:BEEP20,1:IF X=1&&Y=1 A=32
+187 LCE,F:?CHR$(I):IF R=237 GOTO500
+189 LCX,Y:?CHR$(27)
+200 IF SCR(E-1,F)<>42&&G=0 G=RND(2)-1:IF G H=0
+201 IF SCR(E+1,F)<>42&&G=0 G=RND(2):IF G H=0
+202 IF SCR(E,F-1)<>42&&H=0 H=RND(2)-1:IF H G=0
+203 IF SCR(E,F+1)<>42&&H=0 H=RND(2):IF H G=0
+230 E=E+G:F=F+H
+235 IF SCR(E,F)=42 E=E+G*-1:F=F+H*-1:GOTO250
+236 IF SCR(E,F)=27 LCX,Y:?" ":GOTO500
+240 I=SCR(E,F)
+250 LCE,F:?CHR$(237):LC12,0:?P:LC12,1:?L:B=B-T:IF B<0 B=0
+300 WAITT:IF N GOTO130
+310 P=P+B:IF T>2 T=T-1
+350 GOTO10
+500 L=L-1:BEEP10,5:IF L I=A:GOTO120
+510 LC0,11:?"GAME OVER"
+
